@@ -8,12 +8,14 @@ Group {
  ypos -360
  addUserKnob {20 FocalMatch}
  addUserKnob {3 FGFocalLength l "FG Focal Length"}
+ FGFocalLength 1
  addUserKnob {14 FGSensor l "FG Sensor" R 0 100}
- FGSensor {0 0}
+ FGSensor {1 1}
  addUserKnob {26 ""}
  addUserKnob {3 BGFocalLength l "BG Focal Length"}
+ BGFocalLength 1
  addUserKnob {14 BGSensor l "BG Sensor" R 0 100}
- BGSensor {0 0}
+ BGSensor {1 1}
  addUserKnob {26 Result}
  addUserKnob {41 scale -STARTLINE T Transform1.scale}
  addUserKnob {26 ""}
