@@ -1,0 +1,123 @@
+#! /usr/local/Nuke9.0v7/libnuke-9.0.7.so -nx
+version 9.0 v7
+Gizmo {
+ addUserKnob {20 User}
+ addUserKnob {6 position_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+ addUserKnob {4 shape l Shape M {Spherical Cubic}}
+ addUserKnob {18 position l Position t "Set the point at which to create a mask around. (Alt + Ctrl/Cmd + Click in the Viewer)"}
+ position {0 0 0}
+ addUserKnob {13 radius l Radius t "Set the shape's radius."}
+ radius {10 10 10}
+ addUserKnob {41 rotate l Rotate T Axis1.rotate}
+ addUserKnob {7 blackpoint l BlackPoint}
+ addUserKnob {7 whitepoint l WhitePoint}
+ whitepoint 0.5
+ addUserKnob {7 gamma l Gamma R 0 3}
+ gamma 1
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 70
+  ypos -62
+ }
+ Add {
+  value {{-position.r} {-position.g} {-position.b} {curve}}
+  name Add1
+  label "set center"
+  xpos 70
+  ypos -22
+ }
+ ColorMatrix {
+  matrix {
+      {{parent.Axis1.world_matrix.0} {parent.Axis1.world_matrix.1} {parent.Axis1.world_matrix.2}}
+      {{parent.Axis1.world_matrix.4} {parent.Axis1.world_matrix.5} {parent.Axis1.world_matrix.6}}
+      {{parent.Axis1.world_matrix.8} {parent.Axis1.world_matrix.9} {parent.Axis1.world_matrix.10}}
+    }
+  name ColorMatrix1
+  xpos 70
+  ypos 28
+ }
+ Add {
+  value {{position.r} {position.g} {position.b} {curve}}
+  name Add2
+  label "reset center"
+  xpos 70
+  ypos 54
+ }
+set N9467ec0 [stack 0]
+ Expression {
+  temp_name0 XPos
+  temp_expr0 (r-pos.r)/rad.x
+  temp_name1 YPos
+  temp_expr1 (g-pos.g)/rad.y
+  temp_name2 ZPos
+  temp_expr2 (b-pos.b)/rad.z
+  channel0 alpha
+  expr0 clamp(1-(abs(XPos)+abs(YPos)+abs(ZPos)))
+  channel1 {-rgba.red -rgba.green -rgba.blue -rgba.alpha}
+  channel2 {-rgba.red -rgba.green -rgba.blue}
+  name Expression1
+  label cubic
+  xpos 148
+  ypos 110
+  addUserKnob {20 User}
+  addUserKnob {18 pos l Position}
+  pos {{position.r} {position.g} {position.b}}
+  addUserKnob {6 pos_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {13 rad l Radius}
+  rad {{radius.x} {radius.y} {radius.z}}
+ }
+push $N9467ec0
+ Expression {
+  temp_name0 XPos
+  temp_expr0 (r-pos.r)/rad.x
+  temp_name1 YPos
+  temp_expr1 (g-pos.g)/rad.y
+  temp_name2 ZPos
+  temp_expr2 (b-pos.b)/rad.z
+  channel0 alpha
+  expr0 clamp(1-(sqrt(pow2(XPos)+pow2(YPos)+pow2(ZPos))))
+  channel1 {-rgba.red -rgba.green -rgba.blue -rgba.alpha}
+  channel2 {-rgba.red -rgba.green -rgba.blue}
+  name Expression3
+  label spherical
+  xpos -7
+  ypos 109
+  addUserKnob {20 User}
+  addUserKnob {18 pos l Position}
+  pos {{position.r} {position.g} {position.b}}
+  addUserKnob {6 pos_panelDropped l "panel dropped state" -STARTLINE +HIDDEN}
+  addUserKnob {13 rad l Radius}
+  rad {{radius.x} {radius.y} {radius.z}}
+ }
+ Switch {
+  inputs 2
+  which {{parent.shape}}
+  name Switch1
+  xpos 70
+  ypos 161
+ }
+ Grade {
+  channels alpha
+  blackpoint {{parent.blackpoint}}
+  whitepoint {{parent.whitepoint}}
+  gamma {{parent.gamma}}
+  white_clamp true
+  name Grade1
+  xpos 70
+  ypos 196
+ }
+ Output {
+  name Output1
+  xpos 70
+  ypos 260
+ }
+ Axis2 {
+  inputs 0
+  name Axis1
+  label set_rotation_ctrl
+  xpos -34
+  ypos 9
+ }
+end_group
