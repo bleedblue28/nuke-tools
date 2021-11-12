@@ -4,22 +4,22 @@ push $cut_paste_input
 Group {
  name FocalMatch
  selected true
- xpos 156
- ypos -148
+ xpos -1458
+ ypos -360
  addUserKnob {20 FocalMatch}
  addUserKnob {3 FGFocalLength l "FG Focal Length"}
- FGFocalLength 150
+ FGFocalLength 1
  addUserKnob {14 FGSensor l "FG Sensor" R 0 100}
- FGSensor {25.53 0}
- addUserKnob {26 "" +STARTLINE}
+ FGSensor {1 1}
+ addUserKnob {26 ""}
  addUserKnob {3 BGFocalLength l "BG Focal Length"}
- BGFocalLength 133
+ BGFocalLength 1
  addUserKnob {14 BGSensor l "BG Sensor" R 0 100}
- BGSensor {35.9 0}
+ BGSensor {1 1}
  addUserKnob {26 Result}
  addUserKnob {41 scale -STARTLINE T Transform1.scale}
- addUserKnob {26 "" +STARTLINE}
- addUserKnob {26 FocalMatchv1 l "" +STARTLINE T "FocalMatch v1.0\nCreated by Connor Adams"}
+ addUserKnob {26 ""}
+ addUserKnob {26 FocalMatchv1 l "" +STARTLINE T "FocalMatch v1.0\nLast Updated 11/12/2021\nCreated by Connor Adams"}
 }
  Input {
   inputs 0
