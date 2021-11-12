@@ -1,7 +1,7 @@
 # nuke-tools
 My personal nuke tools
 
-Copy folder contents to the .nuke directory. If menu.pg and init.py files already exist, copy and paste the contents of each new file into each existing file respectively
+Copy folder contents to the .nuke directory. If menu.py and init.py files already exist, copy and paste the contents of each new file into each existing file respectively.
 
 
 ## Random_Value_Generator
