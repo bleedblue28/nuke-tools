@@ -4,16 +4,14 @@ push $cut_paste_input
 Group {
  name FocalMatch
  selected true
- xpos -1720
- ypos -305
+ xpos -1458
+ ypos -360
  addUserKnob {20 FocalMatch}
  addUserKnob {3 FGFocalLength l "FG Focal Length"}
- FGFocalLength 0
  addUserKnob {14 FGSensor l "FG Sensor" R 0 100}
  FGSensor {0 0}
  addUserKnob {26 ""}
  addUserKnob {3 BGFocalLength l "BG Focal Length"}
- BGFocalLength 0
  addUserKnob {14 BGSensor l "BG Sensor" R 0 100}
  BGSensor {0 0}
  addUserKnob {26 Result}
@@ -33,15 +31,6 @@ Group {
   name Transform1
   selected true
   xpos 6
-  ypos 56
- }
- Output {
-  name Output1
-  xpos 0
-  ypos 300
- }
-end_group
-
   ypos 56
  }
  Output {
